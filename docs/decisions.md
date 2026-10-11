@@ -9,6 +9,10 @@
   - `requirements.txt` + pytest + pre-commit のみ → ARIA / HyP3 / GMTSAR の統合テストが動かない
   - path setup 方式（`PYTHONPATH` を通す）→ installation.md で非推奨寄り。entry point が登録されない
 
+## 2026-10-11: CLAUDE.md のコーディング規約・Git規約は notes 用とし、`~/MintPy` では upstream の流儀に従う
+- 決定: 日本語コメント・`feature/` ブランチ・`feat:` 接頭辞はこのリポジトリだけに適用する。`~/MintPy` のコードは英語のコメント・docstring、ブランチ名とコミットメッセージは CONTRIBUTING.md と既存の履歴に合わせる
+- 理由: upstream は英語のコードベースで、コミットも `load_data: ...` のような形式。notes の規約のまま PR を出すと差し戻される。日本語での流れの説明は会話か notes 側で行えば「自分で説明できるコードだけ採用する」方針は保てる
+
 ## 2026-10-11: 統合テストはユーザーが手動で実行する
 - 決定: `tests/smallbaselineApp.py` は Claude Code では実行せず、コマンドだけ記録する
 - 理由: テストデータのダウンロードを伴い約 15 分かかる（CLAUDE.md の「大量データのダウンロードはユーザーが実行」）

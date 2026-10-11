@@ -5,14 +5,12 @@
 
 ## プロジェクト概要
 
-<!-- 1〜3行で。詳細な背景はdocs/へ。
-     ライブラリ・バージョン等は requirements.txt / pyproject.toml が正。ここに複製しない -->
-（例）○○を予測するMLシステム。データ収集 → NLP → 時系列予測 → 統合のパイプライン構成。
+[MintPy](https://github.com/insarlab/MintPy)（InSAR 時系列解析）にコントリビュートするための作業ログ・調査メモ。**本体のソースは含まない。**
 
 ### 環境の制約（コードから読み取れない事実のみ）
 
-- （例）GPU: NVIDIA GTX 1060 6GB — VRAM制約あり。学習時の batch_size は32以下
-- （例）実行はWSL2 (Ubuntu) 上のDocker内。ホスト側のパスを直接参照しない
+- MintPy のソースは `~/MintPy`（fork。`origin` = fork、`upstream` = 本家）。**`~/MintPy` にこのリポジトリのファイルを置かない**（upstream への PR に混ざるため）
+- 実行は WSL2 (Ubuntu) 上の conda 環境 `mintpy`（`mamba run -n mintpy <cmd>`）。構成は `reference/environment.md`
 
 ## セッションプロトコル（最重要）
 
@@ -26,13 +24,13 @@
 1. `docs/STATUS.md` を更新する（何をした / 次に何をすべきか）。「前回やったこと」は直近3件までにし、古いものは消す（記録は git の履歴に残る）
 2. 残った課題・詰まった点は **Issue に書く**（既存の Issue へのコメントか、新しい Issue）。STATUS には書かない
 3. 設計判断があれば `docs/decisions.md` に追記する
-4. 触ったディレクトリの `README.md` を更新する（`src/` `scripts/` `tests/` には README を必ず置く）
+4. `logs/` `reference/` にファイルを足したら、そのディレクトリの `README.md` の一覧にも1行足す
 5. 新しい技術概念・用語・調査結果が出たらWikiに追記し、Homeとドキュメントマップを更新する
 6. コミット・プッシュ漏れがないか確認する
 
 ## ドキュメント規約
 
-- IMPORTANT: `src/` `scripts/` `tests/` の各ディレクトリには `README.md` を置き、内容を変更したら同じコミットで更新する
+- IMPORTANT: `logs/` は追記のみ（過去のログは直さない）。古くなった事実は `reference/` を上書き更新する
 - **構造・流れ・依存関係の説明はMermaid図にする。** 文章だけで済ませない（データフロー、処理の順序、モジュール間の依存、状態遷移など）
 - 図の作成原則・交差の減らし方・目視確認の手順は `.claude/rules/mermaid.md` を読むこと
 - Wikiの構成規約は `.claude/rules/wiki.md` を読むこと
@@ -65,21 +63,18 @@
 
 ## 開発コマンド
 
-makeコマンドを優先（直接 `docker compose` 等を叩かない）。
-
-- 全コマンド一覧: `make help`
-- テスト: `make test`
-- Lint / Format: `make lint` / `make format`
+MintPy の開発コマンド（upstream への追従・pre-commit・単体テスト・統合テスト）は `reference/environment.md` の「開発で使うコマンド」を参照。
 
 ### ⚠️ 時間のかかる操作はユーザーが実行
 
 以下はClaude Codeで実行せず、「実行が必要」とユーザーに通知する:
 
-- Dockerイメージの再ビルド
-- GPU長時間学習・大量データのダウンロード
+- 統合テスト `tests/smallbaselineApp.py`（テストデータのダウンロードあり・1データセット約15分）
+- 大量データのダウンロード
 
 ## コーディング規約（常時適用の最小限）
 
+- IMPORTANT: 以下はこのリポジトリ内のコードに適用する。**`~/MintPy` のコード（upstream への PR）は upstream の流儀に従う**: コメント・docstring は英語、既存コードの書き方に合わせ、`pre-commit run --all-files` を通す。処理の流れの日本語での説明は、会話か notes 側に書く
 - **処理の流れをコメントで説明する**: 関数・処理ブロックの冒頭や区切りに、「何をどういう順でやるか」を日本語コメントで書く（例: `# 1. レビューを日付でグループ化 → 2. 日次ポジ率を算出 → 3. 欠損日を補間`）。ユーザーがコードを読んで流れを追えることが目的。ただし自明な1行ごとのコメント（`i += 1  # 加算`等）は書かない
 - コメント・docstringは日本語（技術用語は英語のまま。例: accuracy, batch）
 - 変数名・関数名は英語（Python慣例に従う）
@@ -89,13 +84,14 @@ makeコマンドを優先（直接 `docker compose` 等を叩かない）。
 ## Git規約
 
 - IMPORTANT: `main` への直接コミット禁止。コード・ドキュメントの変更は必ず作業ブランチを切ってから行う
-- 作業開始時に `git branch --show-current` で現在のブランチを確認する。`main` にいたら `feature/<内容>` または `fix/<内容>` を切る（例: `feature/prophet-baseline`）
+- 作業開始時に `git branch --show-current` で現在のブランチを確認する。`main` にいたら `feature/<内容>` または `fix/<内容>` を切る（例: `feature/env-setup`）
 - 例外: `docs/STATUS.md` と `docs/decisions.md` の更新のみ、いま居るブランチにそのままコミットしてよい（`main` に居るなら `main` へ直接でよい）
   - `docs/decisions.md` は**コード作業を伴わない議論から生まれた追記**に限る。設計判断だけのためにブランチ→PR→マージを回さない
   - 作業ブランチで実装している最中に出た設計判断は、そのブランチ内でコミットする
 - 新規ブランチは作業開始前にリモートへプッシュ
 - コミットメッセージ: `feat:` / `fix:` / `docs:` / `refactor:`
 - ブランチを切るか迷う場合（typo修正等の微小変更）はユーザーに確認する
+- `~/MintPy` のブランチ名・コミットメッセージは upstream の流儀に従う（`docs/CONTRIBUTING.md`。この節の `feature/` や `feat:` は notes 用）
 
 ### ブランチの寿命
 
@@ -106,7 +102,7 @@ makeコマンドを優先（直接 `docker compose` 等を叩かない）。
 
 ## セキュリティ
 
-- `.env` は `.claudeignore` で保護済み。APIキーの設定はユーザーが手動で行う（依頼されても行わない）
+- APIキー等の秘密情報の設定はユーザーが手動で行う（依頼されても行わない）
 - コミット前に実際の秘密鍵・トークンが含まれていないか確認。疑わしければコミットしない
 
 ## 参照ドキュメント（必要時のみ読む）
@@ -115,7 +111,7 @@ makeコマンドを優先（直接 `docker compose` 等を叩かない）。
 |---|---|---|
 | `docs/STATUS.md` | 現在地・次の一手 | **毎セッション開始時（必須）** |
 | `docs/decisions.md` | 技術選定・設計判断の記録（ADR） | 設計変更を検討するとき |
-| `docs/experiments.md` | 実験結果・検証済みの知見 | 過去の実験を参照するとき |
+| `reference/environment.md` | 環境スナップショット・開発で使うコマンド | コマンドを実行するとき / 環境が変わったとき |
+| `logs/` | 日付ごとの作業ログ | 過去の経緯を調べるとき |
 | `.claude/rules/*.md` | トピック別の詳細規約 | 該当ファイルを触るとき（自動ロード） |
-| `src/README.md` 等 | 各モジュールの詳細 | 該当モジュールを触るとき |
 | GitHub Wiki | 技術解説・分析レポート | 概念を調べるとき / Wikiを更新するとき |

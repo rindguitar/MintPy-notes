@@ -6,6 +6,7 @@
 開発環境の構築が完了。最初のコントリビュートの題材を決める段階。
 
 ## 前回やったこと
+- 2026-10-11: CLAUDE.md と `.claude/` に残っていたテンプレート（make / Docker / GPU / `src/` 等の README 必須ルール / 別プロジェクトのテスト規約）を削除し、このリポジトリの実態に合わせた
 - 2026-10-11: CONTRIBUTING.md に沿って conda 環境 `mintpy` を作り、fork を editable install。pre-commit 全項目 Passed、CI と同じ単体テスト全件成功 → [`logs/2026-10-11-env-setup.md`](../logs/2026-10-11-env-setup.md)
 
 ## 次の一手（優先順）
