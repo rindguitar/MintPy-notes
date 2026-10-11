@@ -28,7 +28,9 @@
 ~/MintPy/                  fork をクローンしたもの（ソース。editable install の参照先）
   └── src/mintpy/          実際に import されるのはここ
 ~/MintPy-notes/            このメモ
-~/data/                    統合テストのデータ置き場（未作成。どちらのリポジトリにも入れない）
+~/data/                    統合テストのデータ置き場（どちらのリポジトリにも入れない）
+  ├── FernandinaSenDT128.tar.xz   277 MB。残しておくと再実行時にダウンロードを飛ばせる
+  └── FernandinaSenDT128/         展開先 1.2 GB。再実行のたびに消して展開し直される
 ```
 
 ## conda 環境 `mintpy`
@@ -96,9 +98,9 @@ python ~/MintPy/tests/asc_desc2horz_vert.py
 python ~/MintPy/tests/dem_error.py
 pytest ~/MintPy/tests/
 
-# 統合テスト（約 15 分。テストデータをダウンロードする）
+# 統合テスト（1 データセット: DL 約 280 MB + 計算 約 1 分。--dset を省略すると全 7 データセット）
 mkdir -p ~/data
-python ~/MintPy/tests/smallbaselineApp.py --dir ~/data --dset FernandinaSenDT128
+python ~/MintPy/tests/smallbaselineApp.py --dir ~/data --dset FernandinaSenDT128 2>&1 | tee ~/data/smallbaselineApp.log
 ```
 
 ## 確認済みの状態
@@ -108,4 +110,4 @@ python ~/MintPy/tests/smallbaselineApp.py --dir ~/data --dset FernandinaSenDT128
 | `pre-commit run --all-files` | 13 Passed / 1 Skipped（json 対象なし） | 2026-10-11 |
 | 単体テスト 4 スクリプト | すべて OK | 2026-10-11 |
 | `pytest tests/` | 4 passed | 2026-10-11 |
-| 統合テスト `smallbaselineApp.py` | **未実施** | — |
+| 統合テスト `smallbaselineApp.py --dset FernandinaSenDT128` | PASS（DL 7 分 21 秒 + 計算 56 秒。PASS は「エラーなく完走」の意味で数値照合はしない） | 2026-10-11 |

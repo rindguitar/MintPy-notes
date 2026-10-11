@@ -69,7 +69,7 @@ flowchart LR
 ## 現在の状態
 
 - fork を `~/MintPy` にクローン済み（`origin` = fork、`upstream` = 本家）
-- 開発環境は conda 環境 **`mintpy`** に構築済み（fork を editable install、pre-commit 導入済み、単体テスト通過）
+- 開発環境は conda 環境 **`mintpy`** に構築済み（fork を editable install、pre-commit 導入済み、単体テスト・統合テスト（1 データセット）通過）
   → 詳細は [`reference/environment.md`](reference/environment.md)
 
 ## 参考リンク

@@ -69,7 +69,7 @@ MintPy の開発コマンド（upstream への追従・pre-commit・単体テス
 
 以下はClaude Codeで実行せず、「実行が必要」とユーザーに通知する:
 
-- 統合テスト `tests/smallbaselineApp.py`（テストデータのダウンロードあり・1データセット約15分）
+- 統合テスト `tests/smallbaselineApp.py`（1データセットあたり約280MBのダウンロード + 計算約1分。`--dset` 省略時は全7データセット）
 - 大量データのダウンロード
 
 ## コーディング規約（常時適用の最小限）
