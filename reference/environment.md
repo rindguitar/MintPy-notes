@@ -30,7 +30,8 @@
 ~/MintPy-notes/            このメモ
 ~/data/                    統合テストのデータ置き場（どちらのリポジトリにも入れない）
   ├── FernandinaSenDT128.tar.xz   277 MB。残しておくと再実行時にダウンロードを飛ばせる
-  └── FernandinaSenDT128/         展開先 1.2 GB。再実行のたびに消して展開し直される
+  ├── FernandinaSenDT128/         展開先 1.2 GB。再実行のたびに消して展開し直される
+  └── smallbaselineApp.log        統合テストの全出力（tee で保存したもの）
 ```
 
 ## conda 環境 `mintpy`
@@ -110,4 +111,4 @@ python ~/MintPy/tests/smallbaselineApp.py --dir ~/data --dset FernandinaSenDT128
 | `pre-commit run --all-files` | 13 Passed / 1 Skipped（json 対象なし） | 2026-10-11 |
 | 単体テスト 4 スクリプト | すべて OK | 2026-10-11 |
 | `pytest tests/` | 4 passed | 2026-10-11 |
-| 統合テスト `smallbaselineApp.py --dset FernandinaSenDT128` | PASS（DL 7 分 21 秒 + 計算 56 秒。PASS は「エラーなく完走」の意味で数値照合はしない） | 2026-10-11 |
+| 統合テスト `smallbaselineApp.py --dset FernandinaSenDT128` | PASS（DL 7 分 21 秒 + 計算 56 秒。PASS は「エラーなく完走」の意味で数値照合はしない）。全出力は `~/data/smallbaselineApp.log`。警告 3 件は既知（ログ参照） | 2026-10-11 |

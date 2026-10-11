@@ -12,4 +12,4 @@
 
 | 日付 | ログ | 内容 |
 |---|---|---|
-| 2026-10-11 | [開発環境の構築](2026-10-11-env-setup.md) | CONTRIBUTING.md に沿って conda 環境 `mintpy` を作成し、fork を editable install。pre-commit 全項目 Passed・CI 相当の単体テスト全件成功・統合テスト（FernandinaSenDT128）PASS。fork にタグが無いとバージョンが壊れること、CONTRIBUTING.md の `git pull upstream/main` が動かないことを発見 |
+| 2026-10-11 | [開発環境の構築](2026-10-11-env-setup.md) | CONTRIBUTING.md に沿って conda 環境 `mintpy` を作成し、fork を editable install。pre-commit 全項目 Passed・CI 相当の単体テスト全件成功・統合テスト（FernandinaSenDT128）PASS。fork にタグが無いとバージョンが壊れること、CONTRIBUTING.md の `git pull upstream/main` が動かないこと、統合テストで出る警告 3 件（`os.path.isfile(False)` の潜在バグなど。いずれも upstream 未報告）を発見 |
