@@ -17,8 +17,22 @@ ISCE / ARIA / GAMMA / SNAP などが出力した干渉ペアのスタックか�
 
 ```
 README.md              このファイル
+CLAUDE.md              Claude Code 用の作業規約
 mintpy.code-workspace  VS Code 用。~/MintPy-notes と ~/MintPy を1つのワークスペースにまとめる
+docs/
+  STATUS.md            現在地・次の一手
+  decisions.md         判断の記録（なぜそれを選んだか）
+logs/                  日付ごとの作業ログ（追記のみ。過去分は直さない）
+reference/             いま現在の事実（環境スナップショット等。上書き更新）
+.claude/               Claude Code のサブエージェント定義・トピック別規約
 ```
+
+| 置き場所 | 何を書くか | 更新の仕方 |
+|---|---|---|
+| [`logs/`](logs/README.md) | そのとき何が起きたか | 追記のみ |
+| [`reference/`](reference/README.md) | いま何が正しいか | 上書き |
+| [`docs/STATUS.md`](docs/STATUS.md) | 次に何をするか | 上書き |
+| wiki | 概念・用語の解説 | 追記・改訂 |
 
 **用語集・調査メモは wiki に書く** → https://github.com/rindguitar/MintPy-notes/wiki
 
@@ -55,7 +69,8 @@ flowchart LR
 ## 現在の状態
 
 - fork を `~/MintPy` にクローン済み（`origin` = fork、`upstream` = 本家）
-- MintPy の実行環境は**未構築**（どの conda 環境にも `mintpy` は入っていない）
+- 開発環境は conda 環境 **`mintpy`** に構築済み（fork を editable install、pre-commit 導入済み、単体テスト通過）
+  → 詳細は [`reference/environment.md`](reference/environment.md)
 
 ## 参考リンク
 
