@@ -1,0 +1,65 @@
+# MintPy-notes
+
+[MintPy](https://github.com/insarlab/MintPy) を触るにあたっての作業ログと調査メモ。
+
+MintPy (Miami INsar Time-series software in PYthon) は InSAR の時系列解析ツール。
+ISCE / ARIA / GAMMA / SNAP などが出力した干渉ペアのスタックから、地表変位の時系列と平均速度を推定する。
+
+## このリポジトリについて
+
+- **MintPy の fork ではない。** 本体のソースは一切含まない。純粋にメモ。
+- クローン本体は別の場所（`~/MintPy`）に置き、このリポジトリとは混ぜない。
+  fork のコードツリーにメモを置くと upstream との差分に混ざり、PR を出すときに邪魔になるため。
+- fork の wiki ではなく独立したリポジトリにしてある。fork は消すことがあり、
+  消すと wiki も一緒に消えるため。
+
+## 構成
+
+```
+README.md              このファイル
+mintpy.code-workspace  VS Code 用。~/MintPy-notes と ~/MintPy を1つのワークスペースにまとめる
+```
+
+**用語集・調査メモは wiki に書く** → https://github.com/rindguitar/MintPy-notes/wiki
+
+### 2 つのパスの関係
+
+```mermaid
+flowchart LR
+    UP["本家<br/>insarlab/MintPy"]
+    SRC["ソース<br/>~/MintPy<br/>本家の fork"]
+    NOTES["このリポジトリ<br/>~/MintPy-notes<br/>ログ・メモ"]
+
+    UP -->|"fork してクローン"| SRC
+    NOTES -.->|"観測して記録する"| SRC
+```
+
+`~/MintPy` には**このリポジトリのファイルを置かない**。記録はここ（`~/MintPy-notes`）に分けてある。
+
+### 開き方
+
+| 使う版 | 方法 |
+|---|---|
+| VS Code | `mintpy.code-workspace` を開く |
+| ターミナル | `cd ~/MintPy-notes && claude --add-dir ~/MintPy` |
+
+## 運用ルール
+
+- 新しい用語・概念に出会ったら **wiki** に追記する。
+  wiki は本体とは別の git リポジトリなので、編集するには clone が要る。
+  `git clone https://github.com/rindguitar/MintPy-notes.wiki.git`
+- パスは `~/...` で書く。ユーザ名を含む絶対パスは書かない。
+- 図は PNG をコミットせず ` ```mermaid ` フェンスで埋め込む。
+- コミットメッセージには `feat:` / `fix:` / `docs:` / `refactor:` の接頭辞を付ける。
+
+## 現在の状態
+
+- fork を `~/MintPy` にクローン済み（`origin` = fork、`upstream` = 本家）
+- MintPy の実行環境は**未構築**（どの conda 環境にも `mintpy` は入っていない）
+
+## 参考リンク
+
+- upstream: https://github.com/insarlab/MintPy
+- fork: https://github.com/rindguitar/MintPy
+- 公式ドキュメント: https://mintpy.readthedocs.io/
+- 論文: Yunjun, Fattahi & Amelung (2019), *Small baseline InSAR time series analysis: Unwrapping error correction and noise reduction*, Computers & Geosciences 133, 104331. https://doi.org/10.1016/j.cageo.2019.104331

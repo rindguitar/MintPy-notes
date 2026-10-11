@@ -1,0 +1,16 @@
+{
+    "folders": [
+        {
+            "name": "MintPy-notes",
+            "path": "."
+        },
+        {
+            "name": "MintPy (fork)",
+            "path": "../MintPy"
+        }
+    ],
+    "settings": {
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+    }
+}
