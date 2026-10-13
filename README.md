@@ -24,6 +24,7 @@ docs/
   decisions.md         判断の記録（なぜそれを選んだか）
 logs/                  日付ごとの作業ログ（追記のみ。過去分は直さない）
 reference/             いま現在の事実（環境スナップショット等。上書き更新）
+drafts/                外に出す文章の下書き（メンターへの報告、upstream への投稿案）
 .claude/               Claude Code のサブエージェント定義・トピック別規約
 ```
 
@@ -32,6 +33,7 @@ reference/             いま現在の事実（環境スナップショット等
 | [`logs/`](logs/README.md) | そのとき何が起きたか | 追記のみ |
 | [`reference/`](reference/README.md) | いま何が正しいか | 上書き |
 | [`docs/STATUS.md`](docs/STATUS.md) | 次に何をするか | 上書き |
+| [`drafts/`](drafts/README.md) | 外に出す前の文章 | 送ったら状態を記録 |
 | wiki | 概念・用語の解説 | 追記・改訂 |
 
 **用語集・調査メモは wiki に書く** → https://github.com/rindguitar/MintPy-notes/wiki
