@@ -3,7 +3,7 @@
 最終更新: 2026-10-13（セッション終了時に必ず更新）
 
 ## 現在のフェーズ
-upstream #850（`lookup_geo2radar.py`）を再現し、原因を特定した段階。修正方針の承認待ち。
+upstream #850（`lookup_geo2radar.py`）を再現し、原因を特定した段階。メンターへの確認 → upstream へのコメントの順で進める。
 
 ## 前回やったこと
 - 2026-10-13: #850 を再現。**もう落ちないが、subset データでは緯度経度が 89 × 11 画素ずれて黙って書き込まれる**ことを標高の独立チェックで確認。原因は lookup の値（切り出し前の座標）をずらさずに使っていること → [`logs/2026-10-13-issue-850-repro.md`](../logs/2026-10-13-issue-850-repro.md)
@@ -11,9 +11,9 @@ upstream #850（`lookup_geo2radar.py`）を再現し、原因を特定した段�
 - 2026-10-13: upstream の open issue 48 件を調査。外部 PR は中央値 7 日でマージ → [`logs/2026-10-13-upstream-issues.md`](../logs/2026-10-13-upstream-issues.md)
 
 ## 次の一手（優先順）
-1. #850 の修正方針の承認をもらう（ログの「修正の方針（案）」: subset の開始位置を引く + tqdm を progressBar に）
-2. upstream #850 にコメントするか、実装して PR で説明するかを決める
-3. `~/MintPy` にブランチを切って実装 → 標高チェックで検証 → pre-commit・単体テスト → PR
+1. **ユーザー**: メンターに #850 の原因を説明し、取り組んでよいか確認する
+2. upstream #850 にコメントする（下書きは notes #5 のコメント。メンターの意見を反映してから投稿）
+3. 反応を見て `~/MintPy` にブランチを切って実装 → 標高チェックで検証 → pre-commit・単体テスト → PR
 4. notes の `feature/upstream-issue-survey` を main にマージ
 
 ## 未解決・保留中の問題
