@@ -31,7 +31,10 @@
 ~/data/                    統合テストのデータ置き場（どちらのリポジトリにも入れない）
   ├── FernandinaSenDT128.tar.xz   277 MB。残しておくと再実行時にダウンロードを飛ばせる
   ├── FernandinaSenDT128/         展開先 1.2 GB。再実行のたびに消して展開し直される
-  └── smallbaselineApp.log        統合テストの全出力（tee で保存したもの）
+  ├── smallbaselineApp.log        統合テスト（FernandinaSenDT128）の全出力
+  ├── WellsEnvD2T399.tar.xz       280 MB。GAMMA のテストデータ（upstream #850 の再現用）
+  ├── WellsEnvD2T399/             展開先
+  └── smallbaselineApp-WellsEnvD2T399.log  統合テスト（WellsEnvD2T399）の全出力
 ```
 
 ## conda 環境 `mintpy`
@@ -112,3 +115,4 @@ python ~/MintPy/tests/smallbaselineApp.py --dir ~/data --dset FernandinaSenDT128
 | 単体テスト 4 スクリプト | すべて OK | 2026-10-11 |
 | `pytest tests/` | 4 passed | 2026-10-11 |
 | 統合テスト `smallbaselineApp.py --dset FernandinaSenDT128` | PASS（DL 7 分 21 秒 + 計算 56 秒。PASS は「エラーなく完走」の意味で数値照合はしない）。全出力は `~/data/smallbaselineApp.log`。警告 3 件は既知（ログ参照） | 2026-10-11 |
+| 統合テスト `smallbaselineApp.py --dset WellsEnvD2T399`（GAMMA） | PASS（DL 15 分 2 秒 + 計算 25.5 秒）。全出力は `~/data/smallbaselineApp-WellsEnvD2T399.log` | 2026-10-13 |

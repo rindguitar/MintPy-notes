@@ -3,18 +3,18 @@
 最終更新: 2026-10-13（セッション終了時に必ず更新）
 
 ## 現在のフェーズ
-着手先を **upstream #850（`lookup_geo2radar.py` が subset された GAMMA データで落ちる）** に切り替えた段階。再現の準備中。
+upstream #850（`lookup_geo2radar.py`）を再現し、原因を特定した段階。修正方針の承認待ち。
 
 ## 前回やったこと
-- 2026-10-13: #1405（回転コヒーレンス行列）を下調べしたが、重複の可能性と内容の浅さから保留し #850 に切り替え。#1405 でやったことは notes #8 にまとめた。下調べで見つけた未報告の不具合は notes #6 / #7
+- 2026-10-13: #850 を再現。**もう落ちないが、subset データでは緯度経度が 89 × 11 画素ずれて黙って書き込まれる**ことを標高の独立チェックで確認。原因は lookup の値（切り出し前の座標）をずらさずに使っていること → [`logs/2026-10-13-issue-850-repro.md`](../logs/2026-10-13-issue-850-repro.md)
+- 2026-10-13: #1405 を下調べしたが保留し #850 に切り替え（#1405 の経緯は notes #8、見つけた不具合は notes #6 / #7）
 - 2026-10-13: upstream の open issue 48 件を調査。外部 PR は中央値 7 日でマージ → [`logs/2026-10-13-upstream-issues.md`](../logs/2026-10-13-upstream-issues.md)
-- 2026-10-11: 見つけた upstream 未報告の問題を notes の Issue に記録（#1 / #2、#3 は見送りで close）。`feature/env-setup` を main にマージ
 
 ## 次の一手（優先順）
-1. **ユーザーが実行**: WellsEnvD2T399（GAMMA、280 MB）の統合テスト
-   `mamba run -n mintpy python ~/MintPy/tests/smallbaselineApp.py --dir ~/data --dset WellsEnvD2T399 2>&1 | tee ~/data/smallbaselineApp-WellsEnvD2T399.log`
-2. #850 を再現し、原因（subset された lookup table の座標オフセット）を確認して、「subset 対応」と「非対応メッセージ」のどちらにするか決める（詳細は notes #5）
-3. notes の `feature/upstream-issue-survey` を main にマージ
+1. #850 の修正方針の承認をもらう（ログの「修正の方針（案）」: subset の開始位置を引く + tqdm を progressBar に）
+2. upstream #850 にコメントするか、実装して PR で説明するかを決める
+3. `~/MintPy` にブランチを切って実装 → 標高チェックで検証 → pre-commit・単体テスト → PR
+4. notes の `feature/upstream-issue-survey` を main にマージ
 
 ## 未解決・保留中の問題
 - なし
