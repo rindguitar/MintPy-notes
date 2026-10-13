@@ -12,4 +12,5 @@
 
 | 日付 | ログ | 内容 |
 |---|---|---|
+| 2026-10-13 | [upstream の open issue 調査](2026-10-13-upstream-issues.md) | open 48 件を分類し 11 件を精読。外部 PR は中央値 7 日でマージされる。候補 3 件（#215 / #850 / #1405）から **#1405（回転コヒーレンス行列）に着手**。#215 は手元で再現し、レーダー座標では `-i linear` が必ず落ちることを確認 |
 | 2026-10-11 | [開発環境の構築](2026-10-11-env-setup.md) | CONTRIBUTING.md に沿って conda 環境 `mintpy` を作成し、fork を editable install。pre-commit 全項目 Passed・CI 相当の単体テスト全件成功・統合テスト（FernandinaSenDT128）PASS。fork にタグが無いとバージョンが壊れること、CONTRIBUTING.md の `git pull upstream/main` が動かないこと、統合テストで出る警告 3 件（`os.path.isfile(False)` の潜在バグなど。いずれも upstream 未報告）を発見 |
