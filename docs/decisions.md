@@ -9,6 +9,12 @@
   - `requirements.txt` + pytest + pre-commit のみ → ARIA / HyP3 / GMTSAR の統合テストが動かない
   - path setup 方式（`PYTHONPATH` を通す）→ installation.md で非推奨寄り。entry point が登録されない
 
+## 2026-10-19: #850 の前に MintPy の公式チュートリアルをやる
+- 決定: #850 は続けるが、その前に公式チュートリアル（insarlab/MintPy-tutorial の `workflows/smallbaselineApp.ipynb`）を一通りやる。結果の目視には GIS ツール（Google Earth・QGIS など）への書き出しも使う。環境の uv / Docker 化は後回し
+- 理由: メンターの助言（mtg）。これまで統合テストは通したが、`smallbaselineApp.py` の各ステップが何をしているかは追えていない。理解してから取り組むほうが #850 の説明にも次の題材探しにも効く。今の conda 環境は全テストが通っていて、作り直しても理解や #850 は進まない
+- 却下した代替案: #850 の修正を先に進める / 先に uv・Docker で環境を作り直す
+- 補足: Docker の公式イメージ（`ghcr.io/insarlab/mintpy`）は、#850 が配布版の環境でも起きるかを確かめる用途で使える
+
 ## 2026-10-11: CLAUDE.md のコーディング規約・Git規約は notes 用とし、`~/MintPy` では upstream の流儀に従う
 - 決定: 日本語コメント・`feature/` ブランチ・`feat:` 接頭辞はこのリポジトリだけに適用する。`~/MintPy` のコードは英語のコメント・docstring、ブランチ名とコミットメッセージは CONTRIBUTING.md と既存の履歴に合わせる
 - 理由: upstream は英語のコードベースで、コミットも `load_data: ...` のような形式。notes の規約のまま PR を出すと差し戻される。日本語での流れの説明は会話か notes 側で行えば「自分で説明できるコードだけ採用する」方針は保てる
