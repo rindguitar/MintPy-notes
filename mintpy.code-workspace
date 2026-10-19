@@ -7,6 +7,10 @@
         {
             "name": "MintPy (fork)",
             "path": "../MintPy"
+        },
+        {
+            "name": "MintPy-tutorial",
+            "path": "../MintPy-tutorial"
         }
     ],
     "settings": {

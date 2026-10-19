@@ -18,7 +18,7 @@ ISCE / ARIA / GAMMA / SNAP などが出力した干渉ペアのスタックか�
 ```
 README.md              このファイル
 CLAUDE.md              Claude Code 用の作業規約
-mintpy.code-workspace  VS Code 用。~/MintPy-notes と ~/MintPy を1つのワークスペースにまとめる
+mintpy.code-workspace  VS Code 用。~/MintPy-notes と ~/MintPy、~/MintPy-tutorial を1つのワークスペースにまとめる
 docs/
   STATUS.md            現在地・次の一手
   decisions.md         判断の記録（なぜそれを選んだか）

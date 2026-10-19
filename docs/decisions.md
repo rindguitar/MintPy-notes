@@ -14,6 +14,8 @@
 - 理由: メンターの助言（mtg）。これまで統合テストは通したが、`smallbaselineApp.py` の各ステップが何をしているかは追えていない。理解してから取り組むほうが #850 の説明にも次の題材探しにも効く。今の conda 環境は全テストが通っていて、作り直しても理解や #850 は進まない
 - 却下した代替案: #850 の修正を先に進める / 先に uv・Docker で環境を作り直す
 - 補足: Docker の公式イメージ（`ghcr.io/insarlab/mintpy`）は、#850 が配布版の環境でも起きるかを確かめる用途で使える
+- 補足: 目視は **KML / KMZ（Google Earth）から**始める（「初心者には KML が楽」というメンターの助言）。チュートリアルの `google_earth` ステップでそのまま KMZ ができる。QGIS は慣れてから
+- 補足: ノートブックは VS Code で開く。conda 環境 `mintpy` に `ipykernel` だけ追加した
 
 ## 2026-10-11: CLAUDE.md のコーディング規約・Git規約は notes 用とし、`~/MintPy` では upstream の流儀に従う
 - 決定: 日本語コメント・`feature/` ブランチ・`feat:` 接頭辞はこのリポジトリだけに適用する。`~/MintPy` のコードは英語のコメント・docstring、ブランチ名とコミットメッセージは CONTRIBUTING.md と既存の履歴に合わせる

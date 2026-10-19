@@ -11,8 +11,8 @@
 - 2026-10-13: #850 を再現。**もう落ちないが、subset データでは緯度経度が 89 × 11 画素ずれて黙って書き込まれる**ことを標高の独立チェックで確認。原因は lookup の値（切り出し前の座標）をずらさずに使っていること → [`logs/2026-10-13-issue-850-repro.md`](../logs/2026-10-13-issue-850-repro.md)
 
 ## 次の一手（優先順）
-1. 公式チュートリアル `workflows/smallbaselineApp.ipynb` をやる（データ 751 MB のダウンロードはユーザーが実行）。進め方の承認待ち
-2. チュートリアルの出力を GeoTIFF / KMZ に書き出し、Google Earth・QGIS で目視する練習（`save_gdal.py`、`save_kmz.py`）
+1. **ユーザー**: VS Code で `~/MintPy-tutorial/workflows/smallbaselineApp.ipynb` を開き、カーネルに `mintpy` を選んで最初のセルから実行する（最初のセルが 751 MB を `~/data/test` にダウンロード）。分からない出力は質問 → 解説し、学んだことはログと wiki に残す
+2. チュートリアルの出力の KMZ を Google Earth で目視（`google_earth` ステップ、`save_kmz.py`）。QGIS（`save_gdal.py` で GeoTIFF）は慣れてから
 3. #850 に戻る: QGIS で「書き込まれた緯度経度の標高」と正しい標高を重ねてずれを目で示す → upstream #850 にコメント → 実装・PR
 4. 後回し: uv / Docker での環境構築（Docker の公式イメージは #850 の確認用途で先に使うかもしれない）
 5. notes の `feature/upstream-issue-survey` を main にマージ

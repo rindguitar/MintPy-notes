@@ -28,7 +28,9 @@
 ~/MintPy/                  fork をクローンしたもの（ソース。editable install の参照先）
   └── src/mintpy/          実際に import されるのはここ
 ~/MintPy-notes/            このメモ
+~/MintPy-tutorial/         公式チュートリアル（insarlab/MintPy-tutorial を clone。ノートブックの実行結果はここに残る）
 ~/data/                    統合テストのデータ置き場（どちらのリポジトリにも入れない）
+  ├── test/                       チュートリアルの作業場所（FernandinaSenDT128 の 751 MB 版。統合テスト版とは別）
   ├── FernandinaSenDT128.tar.xz   277 MB。残しておくと再実行時にダウンロードを飛ばせる
   ├── FernandinaSenDT128/         展開先 1.2 GB。再実行のたびに消して展開し直される
   ├── smallbaselineApp.log        統合テスト（FernandinaSenDT128）の全出力
@@ -46,6 +48,7 @@ mamba create --yes --name mintpy -c conda-forge \
     --file ~/MintPy/requirements.txt \
     gdal libgdal-netcdf pre-commit pyfftw pytest setuptools_scm
 mamba run -n mintpy python -m pip install -e ~/MintPy
+mamba install -n mintpy -c conda-forge ipykernel     # 2026-10-19 追加: VS Code でチュートリアルのノートブックを動かすため
 ```
 
 ### 実際に入った版（主要なもの）
@@ -74,6 +77,7 @@ mamba run -n mintpy python -m pip install -e ~/MintPy
 | pyfftw | 0.15.1 | conda-forge | 開発用（`tests/requirements.txt`） |
 | pytest | 9.1.1 | conda-forge | 開発用 |
 | pre-commit | 4.6.2 | conda-forge | 開発用。システムの `/usr/bin/pre-commit`（3.6.2）とは別物 |
+| ipykernel | 7.4.0 | conda-forge | 2026-10-19 追加。VS Code のノートブック用（依存込みで 24 パッケージ、既存の更新なし） |
 | setuptools_scm | 10.3.4 | conda-forge | 開発用 |
 | mintpy | 1.6.4.post3 | editable | `~/MintPy/src` を参照 |
 
