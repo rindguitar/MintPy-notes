@@ -87,7 +87,9 @@ mamba install -n mintpy -c conda-forge ipympl        # 2026-10-25 追加: ノー
 
 ```bash
 # 環境に入る（または各コマンドの前に `mamba run -n mintpy` を付ける）
-mamba activate mintpy
+# ~/.bashrc には conda の初期化だけが入っているので conda activate を使う（mamba activate は mamba のシェル連携が無いと動かない）
+# 新しいターミナルを開くたびに必要。行頭が (mintpy) になれば切り替わっている
+conda activate mintpy
 
 # upstream に追従する（CONTRIBUTING.md の `git pull upstream/main` は誤り）
 cd ~/MintPy
