@@ -11,7 +11,7 @@
 - 2026-10-15: #850 が落ちなくなった理由を特定。MintPy は直っておらず、scipy 1.18 の `griddata` が点 0 個の入力で落ちずに NaN を返すようになっただけ。ずれは 2022 年からあった。notes #8 のメンションを削除
 
 ## 次の一手（優先順）
-1. **ユーザー**: ノートブックを保存（Ctrl + S）し、KMZ を作って Google Earth で見る（`save_kmz.py velocity.h5 -u mm -m maskTempCoh.h5`、`save_kmz_timeseries.py timeseries_demErr.h5 --vel velocity.h5 --tcoh temporalCoherence.h5 --mask maskTempCoh.h5`）
+1. **ユーザー**: ノートブックを保存（Ctrl + S）し、KMZ を作って **Google Earth Pro（デスクトップ版）**で見る（ウェブ版は ScreenOverlay（凡例）・NetworkLink・Region に非対応で、凡例が出ず時系列の KMZ は読み込めない。ターミナルでは先に `conda activate mintpy`。`save_kmz.py velocity.h5 -u mm -m maskTempCoh.h5`、`save_kmz_timeseries.py timeseries_demErr.h5 --vel velocity.h5 --tcoh temporalCoherence.h5 --mask maskTempCoh.h5`）
 2. 結果を振り返る: 分からない図・用語を質問 → 解説し、作業ログと wiki に残す。余力があれば `workflows/README.md` の課題（基準点の選び直し、ERA5 の対流圏補正（CDS のキーはユーザーが設定）、固体地球潮汐、時間関数）
 3. #850 に戻る: QGIS で「書き込まれた緯度経度の標高」と正しい標高を重ねてずれを目で示す → upstream #850 にコメント → 実装・PR
 4. 後回し: uv / Docker での環境構築（Docker の公式イメージは #850 の確認用途で先に使うかもしれない）
