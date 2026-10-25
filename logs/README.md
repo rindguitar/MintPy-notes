@@ -12,6 +12,7 @@
 
 | 日付 | ログ | 内容 |
 |---|---|---|
+| 2026-10-25 | [公式チュートリアル（ARIA 版）の振り返り](2026-10-25-tutorial-aria.md) | サンフランシスコ湾の 189 回・961 枚の干渉画像で `smallbaselineApp.py` の各ステップを実行（エラーなし、約 10 分）。流れは「読み込み → 時系列 → 誤差の補正 → 検証」。速度の中央値 −2.1 mm/年、GNSS との RMSE 1.7 mm/年。入力が地理座標なのでジオコーディングは出てこない |
 | 2026-10-13 | [upstream #850 の再現と原因](2026-10-13-issue-850-repro.md) | GAMMA のテストデータで `lookup_geo2radar.py` を実行。**もう落ちないが、subset データでは緯度経度が 89 × 11 画素ずれて黙って書き込まれる**ことを標高の独立チェックで確認（中央値 115 m → 補正後 2.6 m）。原因は lookup の値が切り出し前の座標のまま使われていること。**落ちなくなったのは scipy が空の入力で NaN を返すようになったためで、ずれは 2022 年からあった**（2026-10-15 追記） |
 | 2026-10-13 | [upstream の open issue 調査](2026-10-13-upstream-issues.md) | open 48 件を分類し 11 件を精読。外部 PR は中央値 7 日でマージされる。候補 3 件（#215 / #850 / #1405）から #1405 を下調べしたのち **#850（`lookup_geo2radar.py`）に切り替え**。#1405 の下調べで未報告の不具合 3 件を発見。#215 は手元で再現し、レーダー座標では `-i linear` が必ず落ちることを確認 |
 | 2026-10-11 | [開発環境の構築](2026-10-11-env-setup.md) | CONTRIBUTING.md に沿って conda 環境 `mintpy` を作成し、fork を editable install。pre-commit 全項目 Passed・CI 相当の単体テスト全件成功・統合テスト（FernandinaSenDT128）PASS。fork にタグが無いとバージョンが壊れること、CONTRIBUTING.md の `git pull upstream/main` が動かないこと、統合テストで出る警告 3 件（`os.path.isfile(False)` の潜在バグなど。いずれも upstream 未報告）を発見 |
