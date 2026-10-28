@@ -1,6 +1,6 @@
 # STATUS
 
-最終更新: 2026-10-25（セッション終了時に必ず更新）
+最終更新: 2026-10-28（セッション終了時に必ず更新）
 
 ## 現在のフェーズ
 #850 の再現と原因の特定が済んだ段階。#850 に取り組む前に、公式チュートリアルで `smallbaselineApp.py` の各ステップを理解する（メンターの助言）。
@@ -11,7 +11,7 @@
 - 2026-10-15: wiki に初学者向けの用語 10 ページを追加（座標・ルックアップテーブル・ジオコーディング・切り出し・マルチルック・コヒーレンス・HDF5・tqdm・griddata・ptime.progressBar）。ドキュメントマップを作り直し
 
 ## 次の一手（優先順）
-1. **ユーザー**: ノートブックを保存（Ctrl + S）し、KMZ を作って **Google Earth Pro（デスクトップ版）**で見る（ウェブ版は ScreenOverlay（凡例）・NetworkLink・Region に非対応で、凡例が出ず時系列の KMZ は読み込めない。ターミナルでは先に `conda activate mintpy`。`save_kmz.py velocity.h5 -u mm -m maskTempCoh.h5`、`save_kmz_timeseries.py timeseries_demErr.h5 --vel velocity.h5 --tcoh temporalCoherence.h5 --mask maskTempCoh.h5`）
+1. **ユーザー**: ノートブックを保存（Ctrl + S）し、KMZ を作って **Google Earth Pro（無料のデスクトップアプリ。ウェブ版の有料プラン Professional とは別。Earth Versions のページの「Download Earth Pro on desktop」から入れる。ダウンロード提供は 2027-06-25 まで予定）**で見る（ウェブ版は ScreenOverlay（凡例）・NetworkLink・Region に非対応で、凡例が出ず時系列の KMZ は読み込めない。ターミナルでは先に `conda activate mintpy`。`save_kmz.py velocity.h5 -u mm -m maskTempCoh.h5`、`save_kmz_timeseries.py timeseries_demErr.h5 --vel velocity.h5 --tcoh temporalCoherence.h5 --mask maskTempCoh.h5`）
 2. 振り返りの続き: 作業ログと wiki を読み、分からない図・用語を質問 → 解説。次に公式の `applications/coord_conversion.ipynb`（レーダー座標 ⇔ 地理座標、`ut.coordinate`）を手元の FernandinaSenDT128・WellsEnvD2T399 で動かす（#850 に直結）。余力があれば `workflows/README.md` の課題
 3. #850 に戻る: QGIS で「書き込まれた緯度経度の標高」と正しい標高を重ねてずれを目で示す → upstream #850 にコメント → 実装・PR
 4. 後回し: uv / Docker での環境構築（Docker の公式イメージは #850 の確認用途で先に使うかもしれない）
