@@ -108,3 +108,33 @@ wiki に追加: [干渉画像](https://github.com/rindguitar/MintPy-notes/wiki/I
 [DEM 誤差](https://github.com/rindguitar/MintPy-notes/wiki/DEM-Error) /
 [GNSS との比較](https://github.com/rindguitar/MintPy-notes/wiki/GNSS-Validation) /
 [時間関数](https://github.com/rindguitar/MintPy-notes/wiki/Time-Function)
+
+## 追記（2026-10-28）: Google Earth Pro で見る
+
+KMZ を作って Google Earth Pro（無料のデスクトップアプリ）で開いた（ユーザー）。ウェブ版は凡例（ScreenOverlay）や
+時系列の KMZ（NetworkLink・Region）に対応していないので、デスクトップ版を使う。
+
+```bash
+conda activate mintpy
+cd ~/data/test/SanFranSenDT42/mintpy
+save_kmz.py velocity.h5 -u mm -m maskTempCoh.h5
+save_kmz_timeseries.py timeseries_demErr.h5 --vel velocity.h5 --tcoh temporalCoherence.h5 --mask maskTempCoh.h5
+```
+
+### 見どころ（`velocity.h5` と `maskTempCoh.h5` から、しきい値を超える画素のまとまりを抜き出した）
+
+| 種類 | 重心（緯度, 経度） | 広さ | 速度 |
+|---|---|---|---|
+| 基準点 | 37.69, −122.07 | — | 0 |
+| 局所的に強く遠ざかる | 37.5498, −122.2638 | 約 21 km² | 平均 −7.2、最大 −13.7 mm/年（全体の最小） |
+| 広く遠ざかる（西側） | 37.6210, −122.4802 | 約 46 km² | 平均 −7.2 mm/年 |
+| 広く近づく（東側） | 37.9877, −121.8914 | 約 250 km² | 平均 +3.9 mm/年 |
+
+（しきい値: 遠ざかる側 −6 mm/年未満、近づく側 +3 mm/年超、30 画素以上のまとまり）
+
+### 読み方の注意
+
+- 地図全体に「西が広く負、東が広く正」という数十 km 規模のなだらかな傾きがある。地面の上下動だけでなく、
+  プレートの水平運動が視線方向に乗る分や、このチュートリアルでは実行していない**対流圏補正・傾きの除去（deramp）**で取り除く成分が混ざっている可能性がある
+- 狭い範囲で周りより強く遠ざかる場所（37.55, −122.26 など）は、局所的な地盤沈下などの可能性が高い
+- 公式の課題「対流圏補正を入れて解き直す」で、この傾きがどれだけ変わるかを確かめられる
