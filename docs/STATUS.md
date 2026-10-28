@@ -12,7 +12,7 @@
 
 ## 次の一手（優先順）
 1. **ユーザー**: ノートブックを保存（Ctrl + S）し、KMZ を作って **Google Earth Pro（無料のデスクトップアプリ。ウェブ版の有料プラン Professional とは別。Earth Versions のページの「Download Earth Pro on desktop」から入れる。ダウンロード提供は 2027-06-25 まで予定）**で見る（ウェブ版は ScreenOverlay（凡例）・NetworkLink・Region に非対応で、凡例が出ず時系列の KMZ は読み込めない。ターミナルでは先に `conda activate mintpy`。`save_kmz.py velocity.h5 -u mm -m maskTempCoh.h5`、`save_kmz_timeseries.py timeseries_demErr.h5 --vel velocity.h5 --tcoh temporalCoherence.h5 --mask maskTempCoh.h5`）
-2. 振り返りの続き: 対流圏補正を入れて解き直し（`height_correlation` ならアカウント不要。ERA5 は CDS のキーをユーザーが設定）、標高との相関や「開発地が負」の傾向が残るかを比べる（今の結果を残したまま比べる手順を用意する）。その後、公式の `applications/coord_conversion.ipynb` を手元の FernandinaSenDT128・WellsEnvD2T399 で動かす（#850 に直結）
+2. **ユーザー**: 対流圏補正の有無で比べるため、単体のコマンドで解き直す（既存のファイルは上書きしない）。B = `height_correlation`（`tropo_phase_elevation.py` → `dem_error.py -t smallbaselineApp.cfg` → `timeseries2velocity.py`、`velocity_tropHgt.h5`）、C = B ＋ 線形の傾きの除去（`remove_ramp.py -s linear`、`velocity_tropHgt_ramp.h5`）。終わったら Claude が A（今の `velocity.h5`）・B・C の比較表（標高との相関、東西の差、局所的な沈下の場所）と KMZ を作る。その後、公式の `applications/coord_conversion.ipynb` で #850 につなげる
 3. #850 に戻る: QGIS で「書き込まれた緯度経度の標高」と正しい標高を重ねてずれを目で示す → upstream #850 にコメント → 実装・PR
 4. 後回し: uv / Docker での環境構築（Docker の公式イメージは #850 の確認用途で先に使うかもしれない）
 5. notes の `feature/upstream-issue-survey` を main にマージ
