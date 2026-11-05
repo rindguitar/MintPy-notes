@@ -9,6 +9,13 @@
   - `requirements.txt` + pytest + pre-commit のみ → ARIA / HyP3 / GMTSAR の統合テストが動かない
   - path setup 方式（`PYTHONPATH` を通す）→ installation.md で非推奨寄り。entry point が登録されない
 
+## 2026-11-05: #850 は「読むときに番号を直す」方法で修正する
+- 決定: `lookup_geo2radar.py` の `run_lookup_geo2radar()` で、0（データなし）を除いたあとの `xx` / `yy` から、`-w` のファイルの `SUBSET_XMIN` / `SUBSET_YMIN` を引く（2 行の追加）。ファイルの中身や対応表の値は書き換えない
+- 理由: MintPy 本体（`coord.py`、`resample.py` の 4 か所）と同じやり方で、対応表は切り出し前の基準のまま使える。緯度経度の値は変わらず、書き込む画素の番号だけが正しくなる
+- 却下した代替案:
+  - 出力を切り出し前の大きさで作る → 同じファイルの `height`（254 × 257）と大きさが合わず、同じファイルに入れられない
+  - 対応表の値そのものを切り出し後の番号に書き換える → `coord.py` と `resample.py` が読むときにも引くので、二重に引くことになる
+
 ## 2026-10-19: #850 の前に MintPy の公式チュートリアルをやる
 - 決定: #850 は続けるが、その前に公式チュートリアル（insarlab/MintPy-tutorial の `workflows/smallbaselineApp_aria.ipynb`。下の補足参照）を一通りやる。結果の目視には GIS ツール（Google Earth・QGIS など）への書き出しも使う。環境の uv / Docker 化は後回し
 - 理由: メンターの助言（mtg）。これまで統合テストは通したが、`smallbaselineApp.py` の各ステップが何をしているかは追えていない。理解してから取り組むほうが #850 の説明にも次の題材探しにも効く。今の conda 環境は全テストが通っていて、作り直しても理解や #850 は進まない
