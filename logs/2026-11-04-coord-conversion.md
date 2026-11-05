@@ -73,3 +73,14 @@ ut.coordinate の答え        : 41.1718, -114.8809
 - 無効な画素を NaN で書くので、`geocode.py` が出力を対応表として読めない（`find_valid_lat_lon()` は 0 を無効とみなす）
 - `multilook.py` でレーダー側だけ後から縮小した場合は、`SUBSET_*` と表の値の尺度がそろわない可能性がある（本体の `coord.py` / `resample.py` も同じ条件。未確認）
 - 確認したのは GAMMA の WellsEnvD2T399 だけ。ROI_PAC は同じ経路のはずだが未確認
+
+## 追記（2026-11-05）: 切り出しの開始位置 (x = 89, y = 11) の由来
+
+`~/data/smallbaselineApp-WellsEnvD2T399.log` と `load_data.py` の `read_subset_box()` で確認した。
+
+1. テスト設定の `mintpy.subset.lalo = 41.02:41.32, -115.10:-114.65` で、切り出す範囲を緯度経度で指定している
+2. `coord.bbox_geo2radar()` が対応表を使って、緯度経度の範囲をレーダー画像の画素の範囲に変換する → `box to read for datasets in y/x: (179, 23, 693, 531)`（x0, y0, x1, y1。GAMMA が出力した 1558 × 1292 の画像の番号）
+3. `mintpy.multilook.xstep / ystep = 2` で画素を 2 × 2 にまとめるので、番号も 2 で割って切り捨てる（`utils/attribute.py`）→ x: 179 // 2 = 89、y: 23 // 2 = 11
+4. 属性に `SUBSET_XMIN = 89`、`SUBSET_YMIN = 11`（`XMAX = 346`、`YMAX = 265`）として記録される
+
+地理側も同じ流れで、対応表の範囲 (742, 316, 2268, 1405) が 2 で割られて `SUBSET_XMIN = 371`、`SUBSET_YMIN = 158` になる。
