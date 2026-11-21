@@ -11,10 +11,11 @@
 - 2026-11-04: チュートリアルを踏まえて MintPy の全体像をおさらいし、wiki に[MintPy とは](https://github.com/rindguitar/MintPy-notes/wiki/MintPy-Overview)を追加
 
 ## 次の一手（優先順）
-1. upstream #850 にコメントする（調査結果と修正方針。下書きを作ってユーザーが確認。`@ユーザー名` は notes に書かない）
-2. 反応を見て `~/MintPy` にブランチを切って実装 → 検証 → pre-commit・単体テスト → PR
-3. 余力があれば: 上昇軌道のデータで上下と東西に分ける（`asc_desc2horz_vert.py`）、ERA5 で補正して GNSS と比べる（CDS のキーはユーザーが設定）、`workflows/README.md` の課題
-4. 後回し: uv / Docker での環境構築（Docker の公式イメージは #850 の確認用途で先に使うかもしれない）
+1. **ユーザー**: メンターに下書き（[`logs/2026-11-22-issue-850-comment-draft.md`](../logs/2026-11-22-issue-850-comment-draft.md)）を見てもらう。#850 にコメントするか新しい issue / PR にするかも相談する
+2. go が出たら、下書きの「投稿のしかた」の手順で `gh issue comment` で #850 に投稿（Claude が実行）
+3. 1 週間ほど反応が無ければ「Fixes #850」の PR を出す。反応があれば方針に合わせて `~/MintPy` にブランチを切って実装 → 検証 → pre-commit・単体テスト → PR
+4. 余力があれば: 上昇軌道のデータで上下と東西に分ける（`asc_desc2horz_vert.py`）、ERA5 で補正して GNSS と比べる（CDS のキーはユーザーが設定）、`workflows/README.md` の課題
+5. 後回し: uv / Docker での環境構築
 
 ## 未解決・保留中の問題
 - なし
