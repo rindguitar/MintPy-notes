@@ -6,9 +6,9 @@
 `coord_conversion.ipynb` を終え、#850 のずれを MintPy 自身の関数で確認した段階。「ずらす」のが MintPy の設計どおりであることもコードで確認済み。upstream #850 へのコメントの準備に進む。
 
 ## 前回やったこと
+- 2026-11-22: メンターから issue を挙げる許可。upstream の最新（`b9bc6214`）で #850 は未修正・重複なしを確認。新しい issue ではなく #850 にコメントする方針で下書きを作成中
 - 2026-11-04: `coord_conversion.ipynb` を実行。`ut.coordinate` を基準に #850 のずれを確認（同じ画素で約 15.7 km、ずらすと約 0.1 km）。本体の 4 か所が同じ補正をしていることをコードで確認 → [`logs/2026-11-04-coord-conversion.md`](../logs/2026-11-04-coord-conversion.md)
 - 2026-11-04: チュートリアルを踏まえて MintPy の全体像をおさらいし、wiki に[MintPy とは](https://github.com/rindguitar/MintPy-notes/wiki/MintPy-Overview)を追加
-- 2026-10-28: 「西が負・東が正」は GNSS の東・北・上で分けると主に水平の動き（東西の差 4.5 mm/年のうち水平 3.3、上下 0.4）。C で山が負になるのは処理が作る見かけの模様（ディアブロ山で確認）。wiki に[視線方向（LOS）](https://github.com/rindguitar/MintPy-notes/wiki/Line-Of-Sight)を追加
 
 ## 次の一手（優先順）
 1. upstream #850 にコメントする（調査結果と修正方針。下書きを作ってユーザーが確認。`@ユーザー名` は notes に書かない）
