@@ -107,7 +107,6 @@ Feedback on the approach is welcome.
 - [ ] If modifying functionality, describe changes to function behavior and arguments in a comment below the function declaration.
 - [ ] If adding new functionality, add a detailed description to the documentation and/or an example.
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
 <!-- END PR BODY -->
 
 ### 対訳（確認用）
@@ -145,7 +144,6 @@ Feedback on the approach is welcome.
 | - [ ] Pass Codacy code review (green) / Pass Circle CI test (green) | Codacy・CircleCI が通る（PR を出したあとに結果が出るので、緑になったらチェックを付ける） |
 | - [x] Make sure that your code follows our style. | 既存のコードの書き方に合わせた |
 | - [ ] If modifying functionality, ... / If adding new functionality, ... | 機能や引数を変えた場合・機能を足した場合の項目。今回は当てはまらないので空のまま |
-| 🤖 Generated with Claude Code | Claude Code で作ったことの表示 |
 
 ## #850 へのコメントの下書き（短い版）
 
