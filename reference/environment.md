@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| ソースの HEAD（`~/MintPy`） | `cc441486`（`upstream/main` と一致、2026-11-05 確認） |
+| ソースの HEAD（`~/MintPy`） | `b9bc6214`（`upstream/main` と一致、2026-11-22 確認）。#850 の作業ブランチ `lookup_geo2radar_subset` はここから切った |
 | インストール済みの版 | `1.6.4.post3`（editable install） |
 
 状況が変わったらこのファイルを上書き更新する。構築の経緯は

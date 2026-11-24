@@ -88,3 +88,7 @@ awk '/<!-- BEGIN COMMENT -->/{f=1; next} /<!-- END COMMENT -->/{exit} f' logs/20
 grep -c '@[A-Za-z]' "$F"   # 0 であること
 gh issue comment 850 -R insarlab/MintPy -F "$F"
 ```
+
+## 追記（2026-11-24）: この下書きは置き換えた
+
+PR を先に出す方針（`docs/decisions.md` の 2026-11-24）に合わせて、短い版に置き換えた → [2026-11-24 の下書き](2026-11-24-issue-850-pr-draft.md)。再現手順と数字は PR の本文へ移した。このファイルの本文は投稿しない。
