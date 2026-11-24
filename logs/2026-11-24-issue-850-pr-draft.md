@@ -10,10 +10,11 @@ upstream/main `b9bc6214` から切ったブランチに、コミットを 2 つ�
 
 | コミット | 内容 |
 |---|---|
-| `51a61d71` lookup_geo2radar: support subset dataset | 0（データなし）を除いたあとの `xx` / `yy` から、`-w` のファイルの `SUBSET_XMIN` / `SUBSET_YMIN` を引く（コメント 3 行 + コード 2 行）。属性が無いファイルでは 0 を引くので変わらない |
-| `eedcbf9f` lookup_geo2radar: replace tqdm with ptime.progressBar | 進捗の表示を `tqdm` から MintPy 自前の `ptime.progressBar` に置き換える（並列 1 のときと 2 以上のときの両方） |
+| `20f41e74` lookup_geo2radar: support subset dataset | 0（データなし）を除いたあとの `xx` / `yy` から、`-w` のファイルの `SUBSET_XMIN` / `SUBSET_YMIN` を引く（コメント 3 行 + コード 2 行）。属性が無いファイルでは 0 を引くので変わらない |
+| `d0edab06` lookup_geo2radar: replace tqdm with ptime.progressBar | 進捗の表示を `tqdm` から MintPy 自前の `ptime.progressBar` に置き換える（並列 1 のときと 2 以上のときの両方） |
 
 `tqdm` は `requirements.txt` に無く、pyaps3 → cdsapi を通して間接的に入るだけだった。最初は「入っていない環境では import で落ちる」とコミットメッセージに書いたが、実際には必ず入るので、事実どおりの書き方に直した（push 前なので手元のコミットを書き換えた）。
+コミットメッセージの末尾の `Co-Authored-By` 行は、ユーザーの判断で消した（PR 本文の「Generated with Claude Code」の行も同じく消した）。
 
 ## 検証の結果
 
